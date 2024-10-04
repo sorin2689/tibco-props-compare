@@ -109,7 +109,7 @@ public class XMLService {
         }
     
         // Get the union of all names from both maps
-        Set<String> allNames = new HashSet<>();
+        Set<String> allNames = new TreeSet<>();
         allNames.addAll(variablesMap1.keySet());
         allNames.addAll(variablesMap2.keySet());
     

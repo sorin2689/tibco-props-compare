@@ -26,7 +26,7 @@ public class FileController {
 
      private static final Logger logger = LogManager.getLogger(FileController.class);
 
-    @Value("${xml.files.directory}")
+    @Value("${git.local.directory}")
     private String xmlFilesDirectory;
 
     @GetMapping

@@ -25,8 +25,8 @@ public class XMLComparisonController {
     @Autowired
     private XMLService xmlService;
 
-    @Value("${xml.files.directory}")
-    private String xmlFilesDirectory;
+    @Value("${git.local.directory}")
+    private String gitLocalDirectory;
 
     @PostMapping("/compare")
     public ResponseEntity<?> compareXmlFiles(@RequestParam("environment1") String environment1,
@@ -35,8 +35,8 @@ public class XMLComparisonController {
                                              @RequestParam("environment2") String environment2,
                                              @RequestParam("application2") String application2,
                                              @RequestParam("file2Name") String file2Name) throws Exception {
-        File file1 = new File(xmlFilesDirectory + "/" + environment1 + "/" + application1 + "/" + file1Name);
-        File file2 = new File(xmlFilesDirectory + "/" + environment2 + "/" + application2 + "/" + file2Name);
+        File file1 = new File(gitLocalDirectory + "/" + environment1 + "/" + application1 + "/" + file1Name);
+        File file2 = new File(gitLocalDirectory + "/" + environment2 + "/" + application2 + "/" + file2Name);
 
 
     

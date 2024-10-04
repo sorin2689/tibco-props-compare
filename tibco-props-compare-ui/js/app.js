@@ -141,5 +141,17 @@ document.getElementById('compare-btn').addEventListener('click', function () {
     });
 });
 
+// Add event listener for the refresh button
+document.getElementById('refresh-btn').addEventListener('click', function () {
+    axios.post('http://localhost:8080/api/git/refresh')
+        .then(response => {
+            alert(response.data);
+        })
+        .catch(error => {
+            console.error('Error refreshing repositories:', error);
+            alert('Error refreshing repositories.');
+        });
+});
+
 // Load environments when the page loads
 document.addEventListener('DOMContentLoaded', loadEnvironments);
