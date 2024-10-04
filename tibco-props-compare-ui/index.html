@@ -3,43 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XML Comparison</title>
+    <title>Compare XML Files Between Environments</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="text-center">Compare XML Files</h1>
-        <div class="form-group">
-            <label for="environment">Select Environment:</label>
-            <select id="environment" class="form-control"></select>
-        </div>
-        <div class="form-group">
-            <label for="application">Select Application:</label>
-            <select id="application" class="form-control"></select>
-        </div>
-        <div class="form-group">
-            <label for="file1">Select First XML File:</label>
-            <select id="file1" class="form-control"></select>
-        </div>
-        <div class="form-group">
-            <label for="file2">Select Second XML File:</label>
-            <select id="file2" class="form-control"></select>
-        </div>
-        <button id="compare-btn" class="btn btn-primary btn-block">Compare</button>
+        <h1 class="text-center mb-4">Compare XML Files Between Environments</h1>
 
-        <!-- Table to display comparison results -->
+        <div class="row">
+            <!-- Set 1 -->
+            <div class="col-md-6">
+                <div class="card mb-3">
+                    <div class="card-header bg-primary text-white">Set 1</div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="environment1">Select Environment:</label>
+                            <select id="environment1" class="form-control"></select>
+                        </div>
+                        <div class="form-group">
+                            <label for="application1">Select Application:</label>
+                            <select id="application1" class="form-control"></select>
+                        </div>
+                        <div class="form-group">
+                            <label for="file1">Select XML File:</label>
+                            <select id="file1" class="form-control"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Set 2 -->
+            <div class="col-md-6">
+                <div class="card mb-3">
+                    <div class="card-header bg-success text-white">Set 2</div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="environment2">Select Environment:</label>
+                            <select id="environment2" class="form-control"></select>
+                        </div>
+                        <div class="form-group">
+                            <label for="application2">Select Application:</label>
+                            <select id="application2" class="form-control"></select>
+                        </div>
+                        <div class="form-group">
+                            <label for="file2">Select XML File:</label>
+                            <select id="file2" class="form-control"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Compare Button -->
+        <div class="text-center">
+            <button id="compare-btn" class="btn btn-primary btn-lg">Compare</button>
+        </div>
+
+        <!-- Your result table -->
         <div id="result" class="mt-5">
             <table class="table table-bordered table-hover">
                 <thead>
                     <tr>
                         <th>Element</th>
-                        <th>File 1 Value</th>
-                        <th>File 2 Value</th>
+                        <th>Set 1 Value</th>
+                        <th>Set 2 Value</th>
                     </tr>
                 </thead>
                 <tbody id="comparison-body">
-                    <!-- Rows will be dynamically added here -->
+                    <!-- Dynamic content will go here -->
                 </tbody>
             </table>
         </div>

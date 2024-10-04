@@ -1,71 +1,87 @@
-// Function to load available environments
+// Load environments for both sets
 function loadEnvironments() {
     axios.get('http://localhost:8080/api/files/environments')
         .then(response => {
-            const environmentDropdown = document.getElementById('environment');
-            environmentDropdown.innerHTML = '<option value="">Select an environment</option>';
+            const environment1Dropdown = document.getElementById('environment1');
+            const environment2Dropdown = document.getElementById('environment2');
+            environment1Dropdown.innerHTML = '<option value="">Select an environment</option>';
+            environment2Dropdown.innerHTML = '<option value="">Select an environment</option>';
 
             response.data.forEach(env => {
-                const option = document.createElement('option');
-                option.value = env;
-                option.text = env;
-                environmentDropdown.appendChild(option);
+                const option1 = document.createElement('option');
+                const option2 = document.createElement('option');
+                option1.value = env;
+                option1.text = env;
+                option2.value = env;
+                option2.text = env;
+                environment1Dropdown.appendChild(option1);
+                environment2Dropdown.appendChild(option2);
             });
         })
         .catch(error => console.error('Error loading environments:', error));
 }
 
-// Function to load available applications based on selected environment
-function loadApplications(environment) {
-    axios.get('http://localhost:8080/api/files/applications', {
-        params: { environment: environment }
-    })
-    .then(response => {
-        const applicationDropdown = document.getElementById('application');
-        applicationDropdown.innerHTML = '<option value="">Select an application</option>';
-
-        response.data.forEach(app => {
-            const option = document.createElement('option');
-            option.value = app;
-            option.text = app;
-            applicationDropdown.appendChild(option);
-        });
-    })
-    .catch(error => console.error('Error loading applications:', error));
+// Load applications for a specific environment
+function loadApplications(environmentDropdownId, applicationDropdownId) {
+    const environment = document.getElementById(environmentDropdownId).value;
+    if (environment) {
+        axios.get('http://localhost:8080/api/files/applications', {
+            params: { environment: environment }
+        })
+        .then(response => {
+            const applicationDropdown = document.getElementById(applicationDropdownId);
+            applicationDropdown.innerHTML = '<option value="">Select an application</option>';
+            response.data.forEach(app => {
+                const option = document.createElement('option');
+                option.value = app;
+                option.text = app;
+                applicationDropdown.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Error loading applications:', error));
+    }
 }
 
-// Function to load XML files based on selected environment and application
-function loadXmlFiles(environment, application) {
-    axios.get('http://localhost:8080/api/files/xml-files', {
-        params: {
-            environment: environment,
-            application: application
-        }
-    })
-    .then(response => {
-        const file1Dropdown = document.getElementById('file1');
-        const file2Dropdown = document.getElementById('file2');
-
-        file1Dropdown.innerHTML = '<option value="">Select a file</option>';
-        file2Dropdown.innerHTML = '<option value="">Select a file</option>';
-
-        response.data.forEach(file => {
-            const option1 = document.createElement('option');
-            const option2 = document.createElement('option');
-
-            option1.value = file;
-            option1.text = file;
-            file1Dropdown.appendChild(option1);
-
-            option2.value = file;
-            option2.text = file;
-            file2Dropdown.appendChild(option2);
-        });
-    })
-    .catch(error => console.error('Error loading XML files:', error));
+// Load XML files for a specific environment and application
+function loadXmlFiles(environmentDropdownId, applicationDropdownId, fileDropdownId) {
+    const environment = document.getElementById(environmentDropdownId).value;
+    const application = document.getElementById(applicationDropdownId).value;
+    if (environment && application) {
+        axios.get('http://localhost:8080/api/files/xml-files', {
+            params: {
+                environment: environment,
+                application: application
+            }
+        })
+        .then(response => {
+            const fileDropdown = document.getElementById(fileDropdownId);
+            fileDropdown.innerHTML = '<option value="">Select a file</option>';
+            response.data.forEach(file => {
+                const option = document.createElement('option');
+                option.value = file;
+                option.text = file;
+                fileDropdown.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Error loading XML files:', error));
+    }
 }
 
-// Function to display the comparison results in a table
+// Event listeners for loading applications and files
+document.getElementById('environment1').addEventListener('change', function () {
+    loadApplications('environment1', 'application1');
+});
+document.getElementById('environment2').addEventListener('change', function () {
+    loadApplications('environment2', 'application2');
+});
+document.getElementById('application1').addEventListener('change', function () {
+    loadXmlFiles('environment1', 'application1', 'file1');
+});
+document.getElementById('application2').addEventListener('change', function () {
+    loadXmlFiles('environment2', 'application2', 'file2');
+});
+
+// Function to display comparison results in the table
 function displayResult(comparisonResult) {
     const comparisonBody = document.getElementById('comparison-body');
     comparisonBody.innerHTML = '';  // Clear previous results
@@ -88,42 +104,28 @@ function displayResult(comparisonResult) {
     });
 }
 
-// Event listener for when the environment changes
-document.getElementById('environment').addEventListener('change', function () {
-    const environment = this.value;
-    if (environment) {
-        loadApplications(environment);
-    }
-});
-
-// Event listener for when the application changes
-document.getElementById('application').addEventListener('change', function () {
-    const environment = document.getElementById('environment').value;
-    const application = this.value;
-
-    if (environment && application) {
-        loadXmlFiles(environment, application);
-    }
-});
-
-// Event listener for the Compare button
+// Event listener for Compare button
 document.getElementById('compare-btn').addEventListener('click', function () {
-    const environment = document.getElementById('environment').value;
-    const application = document.getElementById('application').value;
+    const environment1 = document.getElementById('environment1').value;
+    const application1 = document.getElementById('application1').value;
     const file1Name = document.getElementById('file1').value;
+    const environment2 = document.getElementById('environment2').value;
+    const application2 = document.getElementById('application2').value;
     const file2Name = document.getElementById('file2').value;
 
-    if (!environment || !application || !file1Name || !file2Name) {
-        alert('Please select environment, application, and both files.');
+    if (!environment1 || !application1 || !file1Name || !environment2 || !application2 || !file2Name) {
+        alert('Please select environment, application, and files for both sets.');
         return;
     }
 
-    // Send the request to the backend for comparison
+    // Send both sets of selections to the backend for comparison
     axios.post('http://localhost:8080/api/xml/compare', null, {
         params: {
-            environment: environment,
-            application: application,
+            environment1: environment1,
+            application1: application1,
             file1Name: file1Name,
+            environment2: environment2,
+            application2: application2,
             file2Name: file2Name
         }
     })

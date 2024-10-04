@@ -29,12 +29,14 @@ public class XMLComparisonController {
     private String xmlFilesDirectory;
 
     @PostMapping("/compare")
-    public ResponseEntity<?> compareXmlFiles(@RequestParam("environment") String environment,
-                                         @RequestParam("application") String application,
-                                         @RequestParam("file1Name") String file1Name,
-                                         @RequestParam("file2Name") String file2Name) throws Exception {
-    File file1 = new File(xmlFilesDirectory + "/" + environment + "/" + application + "/" + file1Name);
-    File file2 = new File(xmlFilesDirectory + "/" + environment + "/" + application + "/" + file2Name);
+    public ResponseEntity<?> compareXmlFiles(@RequestParam("environment1") String environment1,
+                                             @RequestParam("application1") String application1,
+                                             @RequestParam("file1Name") String file1Name,
+                                             @RequestParam("environment2") String environment2,
+                                             @RequestParam("application2") String application2,
+                                             @RequestParam("file2Name") String file2Name) throws Exception {
+        File file1 = new File(xmlFilesDirectory + "/" + environment1 + "/" + application1 + "/" + file1Name);
+        File file2 = new File(xmlFilesDirectory + "/" + environment2 + "/" + application2 + "/" + file2Name);
 
 
     

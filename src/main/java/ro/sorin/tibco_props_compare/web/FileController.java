@@ -1,6 +1,8 @@
 package ro.sorin.tibco_props_compare.web;
 
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -8,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import ro.sorin.tibco_props_compare.service.XMLService;
 
 import java.io.File;
 import java.util.Arrays;
@@ -19,6 +23,8 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/files")
 @CrossOrigin(origins = {"null", "http://localhost"})
 public class FileController {
+
+     private static final Logger logger = LogManager.getLogger(FileController.class);
 
     @Value("${xml.files.directory}")
     private String xmlFilesDirectory;
@@ -41,6 +47,7 @@ public class FileController {
     @GetMapping("/environments")
     public ResponseEntity<List<String>> listEnvironments() {
         List<String> environments = Arrays.asList("Production", "UAT", "SIT");
+        logger.info("/environments request recevied");
         return ResponseEntity.ok(environments);
     }
 
