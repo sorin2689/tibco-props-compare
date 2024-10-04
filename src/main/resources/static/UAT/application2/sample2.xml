@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<repository xmlns="http://www.tibco.com/xmlns/repo/types/2002">
+    <globalVariables>
+        <globalVariable>
+            <name>//payment-orchestration-ibk.module//BW.DEPLOYMENTUNIT.TYPE</name>
+            <value>456</value> <!-- Different value -->
+            <deploymentSettable>false</deploymentSettable>
+            <serviceSettable>false</serviceSettable>
+            <type>String</type>
+            <isOverride>false</isOverride>
+            <useLookupValue>false</useLookupValue>
+        </globalVariable>
+        <globalVariable>
+            <name>//payment-orchestration-ibk.module//BW.APPNODE.NAME</name>
+            <value>Opps</value>
+            <deploymentSettable>false</deploymentSettable>
+            <serviceSettable>false</serviceSettable>
+            <type>String</type>
+            <isOverride>false</isOverride>
+            <useLookupValue>false</useLookupValue>
+        </globalVariable>
+        <globalVariable>
+            <name>Valoare din fisier 2</name>
+            <value>Opps</value>
+            <deploymentSettable>false</deploymentSettable>
+            <serviceSettable>false</serviceSettable>
+            <type>String</type>
+            <isOverride>false</isOverride>
+            <useLookupValue>false</useLookupValue>
+        </globalVariable>
+    </globalVariables>
+</repository>
