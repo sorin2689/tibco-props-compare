@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compare XML Files Between Environments</title>
+    <title>Tibco compare properties</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="text-center mb-4">Compare XML Files Between Environments</h1>
+        <h1 class="text-center mb-4">
+            Compare Properties
+        </h1>
 
         <div class="row">
             <!-- Set 1 -->
@@ -54,18 +57,22 @@
             </div>
         </div>
 
-        <!-- Compare Button -->
-        <div class="text-center">
-            <button id="compare-btn" class="btn btn-primary btn-lg">Compare</button>
-        </div>
-        <!-- Add Refresh All Environments Button -->
-        <div class="text-center mt-5">
-            <button id="refresh-btn" class="btn btn-warning btn-lg">Refresh All Environments</button>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+        <div class="container mt-5">
+            <div class="d-flex justify-content-end">
+                <button id="compare-btn" class="btn btn-primary btn-lg mr-2">
+                    <i class="fas fa-sync-alt"></i> Compare
+                </button>
+                <button id="refresh-btn" class="btn btn-warning btn-lg">
+                    <i class="fas fa-redo"></i> Git Refresh
+                </button>
+            </div>
         </div>
 
 
         <!-- Your result table -->
-        <div id="result" class="mt-5">
+        <div id="result" class="container mt-5">
             <table class="table table-bordered table-hover">
                 <thead>
                     <tr>

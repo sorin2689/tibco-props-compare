@@ -1,41 +1,28 @@
 body {
-    background-color: #f8f9fa;
-    font-family: 'Arial', sans-serif;  /* Replace with your desired font */
-    font-size: 16px;
+    font-family: 'Arial', sans-serif; /* Or any other modern font */
+    background-color: #f8f9fa; /* Light gray background */
 }
 
-h1 {
-    color: #007bff;
-    margin-bottom: 20px;
+button {
+    border-radius: 5px; /* Smooth button corners */
+    padding: 10px 20px;
+    font-size: 1.1rem;
 }
 
-#result {
-    margin-top: 30px;
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for card elements */
 }
 
-/* Ensure the table font matches the rest of the page */
-table {
-    font-family: inherit;  /* Inherit from the global body font */
-    font-size: inherit;
-    width: 100%;
-    border-collapse: collapse;  /* Ensures cleaner borders */
-}
-
-table th, table td {
-    padding: 12px;  /* Add padding for better spacing */
-    text-align: left;
-}
-
-table th {
-    background-color: #f8f9fa;  /* Optional: lighter background for table header */
-    font-weight: bold;
-}
-
-table td {
-    background-color: #ffffff;  /* Consistent white background */
+.table th, .table td {
+    font-size: 1rem; /* Consistent table font size */
 }
 
 .table-hover tbody tr:hover {
-    background-color: #f1f1f1;  /* Add hover effect for rows */
+    background-color: #f1f1f1; /* Subtle hover effect for table rows */
 }
 
+.icon-letter {
+    height: 1em;  /* Match the height of the font */
+    width: auto;  /* Maintain the aspect ratio */
+    vertical-align: middle;  /* Align the icon vertically with the text */
+}
