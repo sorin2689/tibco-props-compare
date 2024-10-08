@@ -79,10 +79,11 @@ document.getElementById('environment1').addEventListener('change', function () {
 document.getElementById('environment2').addEventListener('change', function () {
     loadApplications('environment2', 'application2');
 });
-document.getElementById('application1').addEventListener('change', function () {
+$('#application1').on('change', function () {
     loadXmlFiles('environment1', 'application1', 'file1');
 });
-document.getElementById('application2').addEventListener('change', function () {
+
+$('#application2').on('change', function () {
     loadXmlFiles('environment2', 'application2', 'file2');
 });
 
