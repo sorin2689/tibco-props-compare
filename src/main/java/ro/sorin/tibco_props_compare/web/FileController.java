@@ -61,6 +61,7 @@ public class FileController {
 
         List<String> applications = Arrays.stream(envDir.listFiles())
                 .filter(File::isDirectory)  // Only list directories
+                .filter(f -> !f.getName().equals(".git"))
                 .map(File::getName)
                 .collect(Collectors.toList());
 

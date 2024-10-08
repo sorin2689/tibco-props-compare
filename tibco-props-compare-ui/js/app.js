@@ -37,6 +37,11 @@ function loadApplications(environmentDropdownId, applicationDropdownId) {
                 option.text = app;
                 applicationDropdown.appendChild(option);
             });
+
+             // Reinitialize Select2 after options are loaded
+             $('#' + applicationDropdownId).select2({
+                placeholder: "Select an application"
+            });
         })
         .catch(error => console.error('Error loading applications:', error));
     }
